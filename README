@@ -1,13 +1,13 @@
 This is content of my ~/.vim folder with several plugins, that make working in vim bearable.
 
 installation:
-<code>
+-------------
 sudo apt-get install vim
 cd ~
 mkdir .vim
 git clone git://github.com/justthefish/vim-php-nerdtree.git .vim
 mv .vim/.vimrc ~
 vim #and ready to roll
-</code>
+-------------
 
 To make this connfig to work, please move .vimrc file from here to your home folder.
