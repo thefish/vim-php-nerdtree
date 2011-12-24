@@ -1,0 +1,2 @@
+tcomment.vba: call delete('/home/thefish/.vim/doc/tcomment.txt')|call delete('/home/thefish/.vim/plugin/tcomment.vim')|call delete('/home/thefish/.vim/autoload/tcomment.vim')
+tagbar.vba: call delete('/home/thefish/.vim/doc/tagbar.txt')|call delete('/home/thefish/.vim/plugin/tagbar.vim')|call delete('/home/thefish/.vim/syntax/tagbar.vim')
