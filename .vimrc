@@ -167,3 +167,25 @@ imap <F10> :MRU<CR>
 "  ------------------------------------------------------
 au BufRead *.php set ft=php.html
 au BufNewFile *.php set ft=php.html
+"  same for *.tpl files
+au BufRead *.tpl set ft=php.html
+au BufNewFile *.tpl set ft=php.html
+
+"  ------------------------------------------------------
+"  Using the system clipboard with ctrl+y and ctrl+p
+"  ------------------------------------------------------
+vmap <C-y> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
+map <C-p> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
+
+"  ------------------------------------------------------
+"  Swank/Slime ond other Lisp features
+"  ------------------------------------------------------
+"  let g:slimv_swank_cmd = '! xterm -e clisp --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+"    '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+
+
+"  ------------------------------------------------------
+"  Solarized color theme
+"  ------------------------------------------------------
+call togglebg#map("<F5>")
+let g:solarized_termcolors=256 "this is specific to my setup, feel free to comment out
