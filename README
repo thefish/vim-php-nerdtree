@@ -3,6 +3,7 @@ This is content of my ~/.vim folder with several plugins, that make working in v
 installation:
 -------------
 sudo apt-get install vim
+sudo apt-get install ctags #this is for indexer
 cd ~
 mkdir .vim
 git clone git://github.com/justthefish/vim-php-nerdtree.git .vim
@@ -10,4 +11,35 @@ mv .vim/.vimrc ~
 vim #and ready to roll
 -------------
 
-To make this connfig to work, please move .vimrc file from here to your home folder.
+To make this config to work, please move .vimrc file from here to your home folder.
+
+Next, you might want to add your projects to indexer, who will rebuild ctags indexes 
+automatically or on each :IndexerRebuild call.
+
+so, type
+-------------
+vim ~/.indexer_files
+-------------
+
+then add some entries to file, similar to this template:
+-------------
+[project1]
+/home/user/projects/project1/*.php
+/home/user/projects/project1/*.js
+/home/user/projects/project1/*.html
+
+[project2]
+/home/user/projects/project2/*.py
+/home/user/projects/project2/*.js
+/home/user/projects/project2/*.html
+-------------
+save file.
+Next time you run vim in your project folder, :IndexerRebuild will be called,
+so you will have "go to definition" and autocomplete on Tab out of the box.
+
+For further information read Indexer docs.
+
+
+Changelog:
+
+06.05.2012 - Added Slimv for Common Lisp REPL in Vim window, added some themes
