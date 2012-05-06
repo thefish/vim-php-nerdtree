@@ -1,6 +1,6 @@
 This is content of my ~/.vim folder with several plugins, that make working in vim bearable.
 
-installation:
+Installation:
 -------------
 sudo apt-get install vim
 sudo apt-get install ctags #this is for indexer
@@ -16,12 +16,13 @@ To make this config to work, please move .vimrc file from here to your home fold
 Next, you might want to add your projects to indexer, who will rebuild ctags indexes 
 automatically or on each :IndexerRebuild call.
 
-so, type
+Indexer:
 -------------
 vim ~/.indexer_files
 -------------
 
-then add some entries to file, similar to this template:
+then add some entries to file, similar to following template.
+.indexer_files:
 -------------
 [project1]
 /home/user/projects/project1/*.php
@@ -33,12 +34,23 @@ then add some entries to file, similar to this template:
 /home/user/projects/project2/*.js
 /home/user/projects/project2/*.html
 -------------
-save file.
+
 Next time you run vim in your project folder, :IndexerRebuild will be called,
 so you will have "go to definition" and autocomplete on Tab out of the box.
 
 For further information read Indexer docs.
 
+Next feature i added is copy and paste from system buffer (browser etc).
+Since i am using console Vim, i use xclip to exchange the bufffer with
+desktop environment.
+
+XClip:
+-------------
+sudo apt-get install xclip
+--------------
+
+Now you can use Ctrl+y to copy selected area to system buffer and Ctrl+P
+to paste from system buffer into Vim. You can change bindings in .vimrc
 
 Changelog:
 
