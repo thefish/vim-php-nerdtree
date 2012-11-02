@@ -44,7 +44,7 @@ set nowrap                " do not wrap lines
 map <esc>c viwu~W
 " ESC-l ... lowercase current word (and goto next word)
 map <esc>l viwuW
-" ESC-u ... uppercase current word (and goto next word)
+" ESC-u ... UPPERCASE current word (and goto next word)
 map <esc>u viwUW
 
 "--------------------------------------------------
@@ -94,7 +94,7 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'
 " Syntax coloring (~/.vim/colors/)
 " available colors: `ls /usr/share/vim/vim??/colors`
 "colorscheme beauty256
-colorscheme zenburn
+colorscheme ir_black2
 
 "---------------------------------------------------
 " Tags file (use ctags)
@@ -119,19 +119,24 @@ map <silent> <F8> :Tlist<CR>
 " nmap <C-S-Left> :tabprevious<CR>
 " imap <C-S-Left> <Esc>:tabprevious<CR>i
 
+
+" -----------------------------------------------------
+"  Ctrl+Z Undo
+" -----------------------------------------------------
 map <C-Z> u<CR>
 imap <C-Z> <Esc>u<CR>i
-map <S-Tab> :tabnext<CR>
-nmap <S-Tab> :tabnext<CR>
-imap <S-Tab> <Esc>:tabnext<CR>i
+
+" -----------------------------------------------------
+"  F2 to save file
+" -----------------------------------------------------
 map <F2> :w<CR>
 imap <F2> <Esc>:w<CR>i
-" mapping for recent files
-map <F6> :MRU<CR>
-imap <F6> <Esc>:MRU<CR>i
-nmap <F6> :MRU<CR>
-" mapping JJ to Escape
+
+" -----------------------------------------------------
+" JJ to escape 
+" -----------------------------------------------------
 inoremap jj <Esc>
+
 " -----------------------------------------------------
 "  Indexer setup
 "  ----------------------------------------------------
@@ -141,14 +146,16 @@ let g:indexr_LookForProjectDir = 0
 let g:indexer_ctagsCommandLineOptions="-h '.php' --exclude='\.git' --totals=yes --tag-relative=yes --PHP-kinds=+cf --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/'"
 let g:indexer_ctagsDontSpecifyFilesIfPossible = 1
 let g:indexer_disableCtagsWarning = 1
+
 " -------------------------------------------------------
 "  Bind Ctrl + B to syntax check
 "  ------------------------------------------------------
 ":autocmd FileType php noremap <C-B> :!php -l %<CR>
 ":autocmd FileType php noremap <C-L> :!$HOME/bin/php -l %<CR>
+
 " -------------------------------------------------------
 "  Syntastic
-"  ------------------------------------------------------
+" -------------------------------------------------------
 let g:syntastic_enable_signs=1 "Пдосветка строк с ашипкой
 let g:syntastic_auto_loc_list=1 "Показываем места с ашипками
 "let g:syntastic_quiet_warnings=1 "Аккуратно кажем вариниги и нотисы 
@@ -156,11 +163,13 @@ let g:syntastic_auto_loc_list=1 "Показываем места с ашипка
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
 "  ------------------------------------------------------
 "  MRU - List of recent edited files mapped to F10
 "  ------------------------------------------------------
 map <F10> :MRU<CR>
 imap <F10> :MRU<CR>
+
 "  ------------------------------------------------------
 "  snipMate helper - allow html snippets in php
 "  makes VIM think thats its php and html simulatenously
@@ -180,7 +189,7 @@ map <C-p> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 "  ------------------------------------------------------
 "  Swank/Slime ond other Lisp features
 "  ------------------------------------------------------
-"  let g:slimv_swank_cmd = '! xterm -e clisp --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
+"let g:slimv_swank_cmd = '! xterm -e clisp --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 "    '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 
 
@@ -188,4 +197,27 @@ map <C-p> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 "  Solarized color theme
 "  ------------------------------------------------------
 call togglebg#map("<F5>")
-let g:solarized_termcolors=256 "this is specific to my setup, feel free to comment out
+let g:solarized_termcolors=256
+
+
+"  ------------------------------------------------------
+"  Used to edit syntax highlighting
+"  ------------------------------------------------------
+" adds to statusline
+" set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}
+
+" " a little more informative version of the above
+" nmap Q :call <SID>SynStack()<CR>
+
+" function! <SID>SynStack()
+"     if !exists("*synstack")
+"         return
+"     endif
+"     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+" endfunc
+
+
+"  ------------------------------------------------------
+"  Disable fucking paredit mode (Slimv)
+"  ------------------------------------------------------
+let g:paredit_mode=0
