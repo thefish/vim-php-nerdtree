@@ -10,7 +10,7 @@ Thanks to [gmarik](http://github.com) for Vundle and all the people who develop 
  * Common Lisp interpreter (preferrably SBCL 1.1+) for slimv plugin. [Get SBCL](http://sbcl.org/platform-table.html).
  * xclip if you have vim compiled without system clipboard support
 
-##Installlation
+##Installation
 
     cd ~
     git clone git://github.com/justthefish/vim-php-nerdtree.git .vim
