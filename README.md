@@ -1,18 +1,16 @@
-Vundle version of plugin tree
-=====
+#Vundle version of plugin tree
 
 Intended for working with Python, PHP, Common Lisp and Haskell files.
 
 More to be written.
 
-Requirements
----
+##Requirements
  * git
  * ctags-exuberant with patch. [Read more on ctags bug and get patch](http://dfrank.ru/ctags581?en).
  * Common Lisp interpreter (preferrably SBCL 1.1+) for slimv plugin. [Get SBCL](http://sbcl.org/platform-table.html).
  * xclip if you have vim compiled without system clipboard support
 
-#Installlation
+##Installlation
 
 
     cd ~
@@ -23,7 +21,7 @@ Requirements
     vim
     :BundleInstall
 
-##Indexer setup
+###Indexer setup
 
     vim ~/.indexer_files
 
@@ -43,7 +41,7 @@ so you will have "go to definition" and autocomplete on Tab out of the box.
 
 For further information [read Indexer docs](http://www.vim.org/scripts/script.php?script_id=3221).
 
-##Ubuntu system clipboard interaction
+###Ubuntu system clipboard interaction
 Next feature i added is copy and paste from system buffer (browser etc).
 Since i am using console Vim, i use xclip to exchange the bufffer with
 desktop environment.
@@ -53,8 +51,8 @@ desktop environment.
 Now you can use Ctrl+y to copy selected area to system buffer and Ctrl+P
 to paste from system buffer into Vim. You can change bindings in .vimrc
 
-Known issues
----
+##Known issues
+
  * Snippets yet not working as intended
  * Tab autocompletion has some bugs, work in progress
 
