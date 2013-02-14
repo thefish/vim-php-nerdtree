@@ -1,8 +1,9 @@
-#Vundle version of plugin tree
+#Vim setup for development
 
-Intended for working with Python, PHP, Common Lisp and Haskell files.
+This is content of my ~/.vim folder with several plugins, that make coding in Vim bearable. 
+Intended for working with Python, PHP, Common Lisp and Haskell projects/files.
 
-More to be written.
+Thanks to [gmarik](http://github.com) for Vundle plugin and all the people for developing and maintaining Vim plugins!
 
 ##Requirements
  * git
@@ -11,7 +12,6 @@ More to be written.
  * xclip if you have vim compiled without system clipboard support
 
 ##Installlation
-
 
     cd ~
     git clone git://github.com/justthefish/vim-php-nerdtree.git .vim
@@ -23,9 +23,11 @@ More to be written.
 
 ###Indexer setup
 
+Open Indexer projects list:
+
     vim ~/.indexer_files
 
-then add some entries to file, similar to following template.
+then add some entries to file, similar to following template:
 
     [python-project]
     option:ctags_params = " --languages=python" 
@@ -41,10 +43,9 @@ so you will have "go to definition" and autocomplete on Tab out of the box.
 
 For further information [read Indexer docs](http://www.vim.org/scripts/script.php?script_id=3221).
 
-###Ubuntu system clipboard interaction
-Next feature i added is copy and paste from system buffer (browser etc).
+###System clipboard
 Since i am using console Vim, i use xclip to exchange the bufffer with
-desktop environment.
+desktop environment. You *don't need this* if you have Vim compiled with system clipboard support.
 
     sudo apt-get install xclip
 
@@ -53,8 +54,8 @@ to paste from system buffer into Vim. You can change bindings in .vimrc
 
 ##Known issues
 
- * Snippets yet not working as intended
- * Tab autocompletion has some bugs, work in progress
+ * Snippets yet not working as intended (at least so well as i want them to :)
+ * Tab autocompletion has some bugs, looking for fix
 
 Last updated:  
 Thu Feb 14 15:26:17 MSK 2013
