@@ -16,7 +16,7 @@ Installlation
 
     cd ~
     git clone git://github.com/justthefish/vim-php-nerdtree.git .vim
-    ln -s ~/.vim/.vimrc .
+    ln -s ~/.vim/.vimrc .vimrc
     cd .vim/
     git submodule update --init
     vim
