@@ -2,7 +2,7 @@ This is set of my favoutite Vim plugins. They turn Vim into a lightweight consol
 
 Plugins are collected with web development in mind, so support of Python, PHP, and Common Lisp is provided.
 
-Thanks to [gmarik](http://github.com) for Vundle and all the people who develop and maintain brilliant Vim plugins!
+Thanks to [gmarik](http://github.com/gmarik/) for Vundle and all the people who develop and maintain brilliant Vim plugins!
 
 ##Requirements
  * git
