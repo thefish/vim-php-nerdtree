@@ -1,6 +1,6 @@
-This is content of my ~/.vim folder with several plugins, that turn Vim into a lightweight IDE :) 
+This is set of my favoutite Vim plugins. They turn Vim into a lightweight console IDE :)
 
-I use it for coding in Python, PHP, Common Lisp and Haskell.
+Plugins are collected with web development in mind, so support of Python, PHP, and Common Lisp is provided.
 
 Thanks to [gmarik](http://github.com) for Vundle and all the people who develop and maintain brilliant Vim plugins!
 
