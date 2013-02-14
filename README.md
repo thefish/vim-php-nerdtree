@@ -9,7 +9,7 @@ Requirements
 ---
  * git
  * ctags-exuberant with patch. [Read more on ctags bug and get patch](http://dfrank.ru/ctags581?en).
- * Common Lisp interpreter (preferrably SBCL 1.0+) for slimv plugin. [Get SBCL](http://sbcl.org/platform-table.html).
+ * Common Lisp interpreter (preferrably SBCL 1.1+) for slimv plugin. [Get SBCL](http://sbcl.org/platform-table.html).
 
 Installlation
 ---
