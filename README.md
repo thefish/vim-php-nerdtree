@@ -56,4 +56,5 @@ to paste from system buffer into Vim. You can change bindings in .vimrc
  * Snippets yet not working as intended
  * Tab autocompletion has some bugs, work in progress
 
-Last updated: Thu Feb 14 14:30:54 MSK 2013
+Last updated:  
+Thu Feb 14 15:26:17 MSK 2013
