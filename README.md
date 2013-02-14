@@ -1,9 +1,8 @@
-#Vim setup for development
+This is content of my ~/.vim folder with several plugins, that turn Vim into a lightweight IDE :) 
 
-This is content of my ~/.vim folder with several plugins, that make coding in Vim bearable. 
-Intended for working with Python, PHP, Common Lisp and Haskell projects/files.
+I use it for coding in Python, PHP, Common Lisp and Haskell.
 
-Thanks to [gmarik](http://github.com) for Vundle plugin and all the people for developing and maintaining Vim plugins!
+Thanks to [gmarik](http://github.com) for Vundle and all the people who develop and maintain brilliant Vim plugins!
 
 ##Requirements
  * git
