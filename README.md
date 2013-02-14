@@ -7,8 +7,8 @@ More to be written.
 
 Requirements
 ---
- * ctags-exhuberant with patch [read more on ctags bug and get patch](http://dfrank.ru/ctags581?en)
- * lisp interpreter (preferrably SBCL 1.0+) for Lisp editing
+ * ctags-exuberant with patch. [Read more on ctags bug and get patch](http://dfrank.ru/ctags581?en).
+ * Common Lisp interpreter (preferrably SBCL 1.0+) for Lisp editing. [Get SBCL](http://sbcl.org/platform-table.html).
 
 Installlation
 ---
@@ -18,7 +18,7 @@ Installlation
     ln -s ~/.vim/.vimrc .
     cd .vim/
     git submodule update --init
-    vi
+    vim
     :BundleInstall
 
 More to be written.
