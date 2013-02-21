@@ -16,7 +16,7 @@ Thanks to [gmarik](http://github.com/gmarik/) for Vundle and all the people who 
     git clone git://github.com/justthefish/vim-php-nerdtree.git .vim
     ln -s ~/.vim/.vimrc .vimrc
     cd .vim/
-    git submodule update --init
+    git submodule update --init bundle/vundle
     vim
     :BundleInstall
 
