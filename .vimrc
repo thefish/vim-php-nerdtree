@@ -19,11 +19,15 @@
 " Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Bundle 'tpope/vim-rails.git'
  " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
  " non github repos
-Bundle 'git://git.wincent.com/command-t.git'
+" Bundle 'git://git.wincent.com/command-t.git'
  " ...
+
+" fuzzyfinder replacement
+Bundle 'git://github.com/kien/ctrlp.vim'
+Bundle 'git://github.com/fisadev/vim-ctrlp-cmdpalette'
 
  Bundle 'git://github.com/scrooloose/nerdtree.git'  
  Bundle 'git://github.com/tpope/vim-surround.git'
@@ -155,8 +159,8 @@ map _u :set encoding=utf-8<cr>:set fileencodings^=utf-8<cr>:set termencoding=utf
 map _i :set encoding=iso-8859-2<cr>:set fileencodings^=iso-8859-2<cr>:set termencoding=iso-8859-2<cr>
 
 "--------------------------------------------------
-" Non indend paste: <F11><S-Ins><F11>
-set pastetoggle=<F11>
+" Non indend paste: <F12><S-Ins><F12>
+set pastetoggle=<F12>
 
 "--------------------------------------------------
 " Open in last edit place
@@ -171,7 +175,7 @@ colorscheme ir_black2
 "---------------------------------------------------
 " Tags file (use ctags)
 let Tlist_Use_Right_Window = 1    " tags list on right window
-:set tags=.vimtags;                 " NOTE SEMICOLON - it makes vim to search for .vimtags up a directory until it finds them
+":set tags=.vimtags;                 " NOTE SEMICOLON - it makes vim to search for .vimtags up a directory until it finds them
 map <silent> <F8> :Tlist<CR>
 
 "---------------------------------------------------
@@ -258,7 +262,7 @@ snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
 "let g:snips_trigger_key='<c-j>'
 
 "  ------------------------------------------------------
-"  Using the system clipboard with ctrl+y and ctrl+p
+"  Using the xclip as system clipboard with ctrl+y and ctrl+p
 "  ------------------------------------------------------
 vmap <C-y> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
 map <C-p> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
@@ -316,3 +320,79 @@ set ofu=syntaxcomplete#Complete
 "  Neo Complete Cahe
 "  ------------------------------------------------------
 let g:neocomplcache_enable_at_startup = 1
+
+
+"  ------------------------------------------------------
+"  make nerdtree ignore .pyc
+"  ------------------------------------------------------
+let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
+
+"  ------------------------------------------------------
+" tweak for jump to definition
+" 
+"  http://tartley.com/?p=1277
+" By default, ctags generates tags for Python functions, classes, class members, variables and imports.
+" To fix this, create a ~/.ctags file:
+"    --python-kinds=-iv
+"    --exclude=build
+"    --exclude=dist
+" in case of indexer, the record for a python project should look like this:
+"
+"        [soda]
+"
+"        option:ctags_params = " --languages=python --python-kinds=-iv --exclude=build --exclude=dist " 
+"        /home/thefish/projects/soda/
+"
+"  ------------------------------------------------------
+" go to defn of tag under the cursor
+fun! MatchCaseTag()
+    let ic = &ic
+    set noic
+    try
+        exe 'tjump ' . expand('<cword>')
+    finally
+       let &ic = ic
+    endtry
+endfun
+nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
+
+
+"  ------------------------------------------------------
+"  FuzzyFinder replacement
+"  * **Fuzzy file, code and command finder** (like Textmante or Sublime Text 2):
+"  https://github.com/fisadev/fisa-vim-config<F2>
+"  * ``,e`` = open file (like the original :e) but with recursive and fuzzy file name matching. Example: if you type "mopy" it will find a file named "models.py" placed on a subdirectory. And allows you to open the selected file on a new tab with ``Ctrl-t``!
+"  * ``,g`` = fuzzy symbol finder (classes, methods, variables, functions, ...) on the current file. Example: if you type "usr" it will find the User class definition on the current file. ``,G`` does the same but on all opened files.
+"  * ``,c`` = fuzzy command finder (internal vim commands, or custom commands). Example: if you type "diff" it will find ``:GitDiff``, ``:diffthis``, and many other similar commands.
+"  * ``,f`` = fuzzy text finder on all the opened files. Example: if you type "ctm=6" it will find the line containing "current_time = 16".
+"  * ``,m`` = fuzzy finder of most recently used files.
+"  * ``,we``, ``,wg``, ``,wc``, ``,wf`` and ``,wm`` = same as ``,e``, ``,g``, ``,c``, ``,f`` and ``,wm`` but initiate the search with the word under the cursor (also the upper case version of ``,G``, ``,wG``). Is useful to think about the ``,wg`` as a "fuzzy go to definition" (if the definition is in the same file, or ``,wG`` if the definition is on any of the opened files).
+"  * ``,pe`` = same as ``,e`` but initiates the search with the path under the cursor.
+"  ------------------------------------------------------
+" CtrlP (new fuzzy finder)
+let g:ctrlp_map = ',e'
+nmap ,g :CtrlPBufTag<CR>
+nmap ,G :CtrlPBufTagAll<CR>
+nmap ,f :CtrlPLine<CR>
+nmap ,m :CtrlPMRUFiles<CR>
+nmap ,c :CtrlPCmdPalette<CR>
+" to be able to call CtrlP with default search text
+function! CtrlPWithSearchText(search_text, ctrlp_command_end)
+    execute ':CtrlP' . a:ctrlp_command_end
+    call feedkeys(a:search_text)
+endfunction
+" CtrlP with default text
+nmap ,wg :call CtrlPWithSearchText(expand('<cword>'), 'BufTag')<CR>
+nmap ,wG :call CtrlPWithSearchText(expand('<cword>'), 'BufTagAll')<CR>
+nmap ,wf :call CtrlPWithSearchText(expand('<cword>'), 'Line')<CR>
+nmap ,we :call CtrlPWithSearchText(expand('<cword>'), '')<CR>
+nmap ,pe :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
+nmap ,wm :call CtrlPWithSearchText(expand('<cword>'), 'MRUFiles')<CR>
+nmap ,wc :call CtrlPWithSearchText(expand('<cword>'), 'CmdPalette')<CR>
+" Don't change working directory
+let g:ctrlp_working_path_mode = 0
+" Ignore files on fuzzy finder
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
+  \ 'file': '\.pyc$\|\.pyo$',
+  \ }
