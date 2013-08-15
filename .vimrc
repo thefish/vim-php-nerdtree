@@ -35,7 +35,7 @@ Bundle 'git://github.com/fisadev/vim-ctrlp-cmdpalette'
  " SnipMate fork 
  Bundle "MarcWeber/vim-addon-mw-utils"
  Bundle "tomtom/tlib_vim"
- Bundle "honza/snipmate-snippets"
+" Bundle "honza/snipmate-snippets"
  Bundle 'git://github.com/garbas/vim-snipmate.git'
 
  Bundle 'git://github.com/vim-scripts/colorsupport.vim'
@@ -55,6 +55,15 @@ Bundle 'git://github.com/fisadev/vim-ctrlp-cmdpalette'
  Bundle 'https://github.com/Shougo/vimproc.git'
  Bundle 'https://github.com/Shougo/neocomplcache.git'
  Bundle 'https://github.com/Shougo/vimshell.git'
+ " Ack
+ "Bundle 'https://github.com/mileszs/ack.vim'
+ Bundle 'https://github.com/tyok/ack.vim'
+ " NERDTREE search with ack
+ Bundle 'https://github.com/vsushkov/nerdtree-ack'
+ " MRU
+ Bundle 'https://github.com/vim-scripts/mru.vim'
+ " Airline
+ Bundle 'bling/vim-airline'
 
 
  filetype plugin indent on     " required!
@@ -371,6 +380,7 @@ nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
 "  ------------------------------------------------------
 " CtrlP (new fuzzy finder)
 let g:ctrlp_map = ',e'
+nmap ,r :CtrlPRoot<CR>
 nmap ,g :CtrlPBufTag<CR>
 nmap ,G :CtrlPBufTagAll<CR>
 nmap ,f :CtrlPLine<CR>
