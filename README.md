@@ -36,15 +36,32 @@ then add some entries to file, similar to following template:
     option:ctags_params = " --languages=php" 
     /home/user/path/to/php/project
 
-
 Next time you run vim in your project folder, :IndexerRebuild will be called,
 so you will have "go to definition" and autocomplete on Tab out of the box.
 
-For further information [read Indexer docs](http://www.vim.org/scripts/script.php?script_id=3221).
+One more note about Python projects: By default, ctags generates tags 
+for Python functions, classes, class members, variables definitions *and*
+declarations *and*, in some cases, usages ([more](http://tartley.com/?p=1277) 
+on this issue).
+TL;DR: To not clutter your tags too much, i recommend you to use these
+settings for Python projects:
+
+        [your-project-name]
+        option:ctags_params = " --languages=python --python-kinds=-iv --exclude=build --exclude=dist " 
+        /home/user/path/to/python/project
+
+Now you'll have much cleaner "go to definition" (Ctrl-] in this .vimrc), and 
+lack of tags is compensated with lots of ways to fuzzy-find inline usages and 
+source files (thanks to [CtrlP](http://github.com/kien) authors).
+
+Honestly, tag file management is a very basic usage of Indexer, if you like 
+to use this tool to full power, 
+[read Indexer docs](http://www.vim.org/scripts/script.php?script_id=3221).
 
 ###System clipboard
 Since i am using console Vim, i use xclip to exchange the bufffer with
-desktop environment. You *don't need this* if you have Vim compiled with system clipboard support.
+desktop environment. You *don't need this* if you have Vim compiled with 
+system clipboard support.
 
     sudo apt-get install xclip
 
@@ -54,7 +71,6 @@ to paste from system buffer into Vim. You can change bindings in .vimrc
 ##Known issues
 
  * Snippets yet not working as intended (at least so well as i want them to :)
- * Tab autocompletion has some bugs, looking for fix
 
 Last updated:  
-Thu Feb 14 15:26:17 MSK 2013
+Thu Aug 15 05:14:49 MSK 2013
