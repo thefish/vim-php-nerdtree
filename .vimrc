@@ -55,7 +55,8 @@ Bundle 'git://github.com/fisadev/vim-ctrlp-cmdpalette'
  Bundle 'https://github.com/Shougo/vimproc.git'
  Bundle 'https://github.com/Shougo/neocomplcache.git'
  Bundle 'https://github.com/Shougo/vimshell.git'
-
+ " Ack (Better than grep!)
+ Bundle 'https://github.com/mileszs/ack.vim.git'
 
  filetype plugin indent on     " required!
  "
