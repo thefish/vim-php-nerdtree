@@ -1,81 +1,71 @@
- set nocompatible               " be iMproved
- filetype off                   " required!
+set nocompatible               " be iMproved
+filetype off                   " required!
 
- set rtp+=~/.vim/bundle/vundle/
- call vundle#rc()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
- " disable SSL check
- let $GIT_SSL_NO_VERIFY = 'true'
+" disable SSL check
+let $GIT_SSL_NO_VERIFY = 'true'
 
- " let Vundle manage Vundle
- " required! 
- Bundle 'gmarik/vundle'
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
 
- " My Bundles here:
- "
- " original repos on github
 " Bundle 'tpope/vim-fugitive'
-" Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Bundle 'tpope/vim-rails.git'
- " vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
- " non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
- " ...
 
 " fuzzyfinder replacement
 Bundle 'git://github.com/kien/ctrlp.vim'
 Bundle 'git://github.com/fisadev/vim-ctrlp-cmdpalette'
 
- Bundle 'git://github.com/scrooloose/nerdtree.git'  
- Bundle 'git://github.com/tpope/vim-surround.git'
- 
- " SnipMate fork 
- Bundle "MarcWeber/vim-addon-mw-utils"
- Bundle "tomtom/tlib_vim"
-" Bundle "honza/snipmate-snippets"
- Bundle 'git://github.com/garbas/vim-snipmate.git'
+Bundle 'git://github.com/scrooloose/nerdtree.git'  
+Bundle 'git://github.com/tpope/vim-surround.git'
 
- Bundle 'git://github.com/vim-scripts/colorsupport.vim'
+" SnipMate fork 
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+"Bundle 'git://github.com/garbas/vim-snipmate.git'
+Bundle 'ervandew/snipmate.vim'
+"Bundle 'vim-scripts/snipmate-snippets'
 
- Bundle 'vim-scripts/DfrankUtil'
- Bundle 'vim-scripts/vimprj'
- Bundle 'vim-scripts/indexer.tar.gz'
+Bundle 'git://github.com/vim-scripts/colorsupport.vim'
 
- Bundle 'git://github.com/scrooloose/syntastic.git'
- Bundle 'git://github.com/vim-scripts/slimv.vim.git'
- Bundle 'git://github.com/justthefish/vim-thefish-colors.git'
- 
- 
- Bundle 'git://github.com/vim-scripts/SuperTab.git'
- 
- " VimShell
- Bundle 'https://github.com/Shougo/vimproc.git'
- Bundle 'https://github.com/Shougo/neocomplcache.git'
- Bundle 'https://github.com/Shougo/vimshell.git'
- " Ack
- "Bundle 'https://github.com/mileszs/ack.vim'
- Bundle 'https://github.com/tyok/ack.vim'
- " NERDTREE search with ack
- Bundle 'https://github.com/vsushkov/nerdtree-ack'
- " MRU
- Bundle 'https://github.com/vim-scripts/mru.vim'
- " Airline
- Bundle 'bling/vim-airline'
+Bundle 'vim-scripts/DfrankUtil'
+Bundle 'vim-scripts/vimprj'
+Bundle 'vim-scripts/indexer.tar.gz'
+
+Bundle 'git://github.com/scrooloose/syntastic.git'
+Bundle 'git://github.com/vim-scripts/slimv.vim.git'
+Bundle 'git://github.com/justthefish/vim-thefish-colors.git'
 
 
- filetype plugin indent on     " required!
- "
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+Bundle 'ervandew/supertab'
+
+" VimShell
+Bundle 'https://github.com/Shougo/vimproc.git'
+Bundle 'https://github.com/Shougo/neocomplcache.git'
+Bundle 'https://github.com/Shougo/vimshell.git'
+" Ack
+"Bundle 'https://github.com/mileszs/ack.vim'
+Bundle 'https://github.com/tyok/ack.vim'
+" NERDTREE search with ack
+Bundle 'https://github.com/vsushkov/nerdtree-ack'
+" MRU
+Bundle 'https://github.com/vim-scripts/mru.vim'
+" Airline
+Bundle 'bling/vim-airline'
+" Haskell ghc-mod
+Bundle "https://github.com/eagletmt/ghcmod-vim"
+
+filetype plugin indent on     " required!
+"
+" Brief help
+" :BundleList          - list configured bundles
+" :BundleInstall(!)    - install(update) bundles
+" :BundleSearch(!) foo - search(or refresh cache first) for foo
+" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+"
+" see :h vundle for more details or wiki for FAQ
+" NOTE: comments after Bundle command are not allowed..
 
 " ==== OLD VIMRC ====
 
@@ -205,22 +195,6 @@ map <silent> <F8> :Tlist<CR>
 " imap <C-S-Left> <Esc>:tabprevious<CR>i
 
 
-" -----------------------------------------------------
-"  Ctrl+Z Undo
-" -----------------------------------------------------
-map <C-Z> u<CR>
-imap <C-Z> <Esc>u<CR>i
-
-" -----------------------------------------------------
-"  F2 to save file
-" -----------------------------------------------------
-map <F2> :w<CR>
-imap <F2> <Esc>:w<CR>i
-
-" -----------------------------------------------------
-" JJ to escape 
-" -----------------------------------------------------
-inoremap jj <Esc>
 
 " -----------------------------------------------------
 "  Indexer setup
@@ -228,7 +202,7 @@ inoremap jj <Esc>
 " let g:Indexer_ctagsCommandLineOptions=""
 let g:indexer_tagsDirname = $HOME."/.vim/tags"
 " let g:indexer_lookForProjectDir = 0 
-let g:indexer_ctagsCommandLineOptions="-h '.php' --exclude='\.git' --totals=yes --tag-relative=yes --PHP-kinds=+cf --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/'"
+let g:indexer_ctagsCommandLineOptions="-h '.php' --exclude='\.git' --totals=yes --tag-relative=yes --regex-PHP='/abstract class ([^ ]*)/\1/c/' --regex-PHP='/interface ([^ ]*)/\1/c/' --regex-PHP='/(public\s+|static\s+|protected\s+|private\s+)\$([^ \t=]+)/\2/p/' --regex-PHP='/const\s+([^ \t=]+)/\1/d/' --regex-PHP='/final\s+(public\s+|static\s+|abstract\s+|protected\s+|private\s+)function\s+\&?\s*([^ (]+)/\2/f/' --regex-PHP='/(public |static |abstract |protected |private )+function ([^ (]*)/\2/f/' --PHP-kinds=+cpdf-v "
 let g:indexer_ctagsDontSpecifyFilesIfPossible = 1
 let g:indexer_disableCtagsWarning = 1
 let g:indexer_disableIndexerFilesDirsWarning=1
@@ -265,10 +239,6 @@ au BufNewFile *.php set ft=php.html
 "  same for *.tpl files
 au BufRead *.tpl set ft=php.html
 au BufNewFile *.tpl set ft=php.html
-" map snipppet completion to ctrl+j
-ino <c-j> <c-r>=snipMate#TriggerSnippet()<cr>
-snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
-"let g:snips_trigger_key='<c-j>'
 
 "  ------------------------------------------------------
 "  Using the xclip as system clipboard with ctrl+y and ctrl+p
@@ -281,15 +251,6 @@ map <C-p> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 "  ------------------------------------------------------
 "let g:slimv_swank_cmd = '! xterm -e clisp --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
 "    '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
-
-
-
-"  ------------------------------------------------------
-"  Solarized color theme
-"  ------------------------------------------------------
-" call togglebg#map("<F5>")
-let g:solarized_termcolors=256
-
 
 "  ------------------------------------------------------
 "  Used to edit syntax highlighting
@@ -369,7 +330,7 @@ nnoremap <silent> <c-]> :call MatchCaseTag()<CR>
 "  ------------------------------------------------------
 "  FuzzyFinder replacement
 "  * **Fuzzy file, code and command finder** (like Textmante or Sublime Text 2):
-"  https://github.com/fisadev/fisa-vim-config<F2>
+"  https://github.com/fisadev/fisa-vim-config
 "  * ``,e`` = open file (like the original :e) but with recursive and fuzzy file name matching. Example: if you type "mopy" it will find a file named "models.py" placed on a subdirectory. And allows you to open the selected file on a new tab with ``Ctrl-t``!
 "  * ``,g`` = fuzzy symbol finder (classes, methods, variables, functions, ...) on the current file. Example: if you type "usr" it will find the User class definition on the current file. ``,G`` does the same but on all opened files.
 "  * ``,c`` = fuzzy command finder (internal vim commands, or custom commands). Example: if you type "diff" it will find ``:GitDiff``, ``:diffthis``, and many other similar commands.
@@ -406,3 +367,20 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.git|\.hg|\.svn)$',
   \ 'file': '\.pyc$\|\.pyo$',
   \ }
+
+" -----------------------------------------------------
+"  Ctrl+Z Undo
+" -----------------------------------------------------
+map <C-Z> u<CR>
+imap <C-Z> <Esc>u<CR>i
+
+" -----------------------------------------------------
+"  F2 to save file
+" -----------------------------------------------------
+map <F2> :w<CR>
+imap <F2> <Esc>:w<CR>i
+
+" -----------------------------------------------------
+" JJ to escape 
+" -----------------------------------------------------
+inoremap jj <Esc>
