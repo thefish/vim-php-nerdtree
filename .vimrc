@@ -55,6 +55,8 @@ Bundle 'https://github.com/vim-scripts/mru.vim'
 Bundle 'bling/vim-airline'
 " Haskell ghc-mod
 Bundle "https://github.com/eagletmt/ghcmod-vim"
+" Haskell completion /neocomplcache
+Bundle "https://github.com/eagletmt/neco-ghc.git"
 
 filetype plugin indent on     " required!
 "
