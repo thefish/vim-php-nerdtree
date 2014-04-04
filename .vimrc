@@ -57,6 +57,10 @@ Bundle 'bling/vim-airline'
 Bundle "https://github.com/eagletmt/ghcmod-vim"
 " Haskell completion /neocomplcache
 Bundle "https://github.com/eagletmt/neco-ghc.git"
+" Unite haddock / hoogle
+Bundle "https://github.com/Shougo/unite.vim.git"
+Bundle "https://github.com/eagletmt/unite-haddock.git"
+
 
 filetype plugin indent on     " required!
 "
@@ -386,3 +390,10 @@ imap <F2> <Esc>:w<CR>i
 " JJ to escape 
 " -----------------------------------------------------
 inoremap jj <Esc>
+
+
+" -----------------------------------------------------
+" NecoGHC setup 
+" -----------------------------------------------------
+" Signature info in autocompletion - slower load, but useful
+let g:necoghc_enable_detailed_browse = 1 
