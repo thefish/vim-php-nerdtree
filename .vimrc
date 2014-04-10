@@ -73,16 +73,11 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed..
 
-" ==== OLD VIMRC ====
-
 "--------------------------------------------------
 " Character encoding
 set termencoding=utf-8        
 set encoding=utf-8            
 set fileencodings^=utf-8      
-"set termencoding=iso-8859-2    
-"set encoding=iso-8859-2      
-"set fileencodings^=iso-8859-2
 
 "--------------------------------------------------
 " Base settings
@@ -104,9 +99,6 @@ set lcs=tab:>.,eol:$      " show non printed chars
 set whichwrap+=<,>,[,]    " where wrap long lines
 set gdefault              " /g default on s///
 set showcmd               " show typed commands
-set wildmenu              " show menu (bash-like) on tab
-set wildignore=*.o,*~     " ignor on wildmenu
-set incsearch             " show what is typed on /
 set statusline=%<%f\ (%{&encoding})\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set laststatus=2          " always show status line
 set viminfo='1000,f1,:1000,/1000  " big viminfo :)
@@ -125,29 +117,14 @@ map <esc>l viwuW
 map <esc>u viwUW
 
 "--------------------------------------------------
-" Word completion on <TAB>
-
-"  let col = col('.') - 1
-""  if !col || getline('.')[col - 1] !~ '\k'
-"  if !col || getline('.')[col - 1] !~ '\k'
-"    return "\<tab>"
-"  elseif "backward" == a:direction
-"    return "\<c-p>"
-""    return "\<c-x>\<c-o>"
-"  else
-"    return "\<c-n>"
-"  endif
-"endfunction
-"inoremap <Tab> <C-R>=InsertTabWrapper("backward")<CR>
-"inoremap <S-Tab> <C-R>=InsertTabWrapper("forward")<CR>
-
-"--------------------------------------------------
 " Duplicate line
+"--------------------------------------------------
 map! <c-d> <esc>yypi
 map <c-d> <esc>yyp
 
 "--------------------------------------------------
 " File tree on F7
+"--------------------------------------------------
 map <silent> <F7> :NERDTreeToggle<CR>
 " let NERDTreeMapActivateNode='<CR>'
 
@@ -160,21 +137,23 @@ let NERDTreeChDirMode=2 " always open in current dir
 
 "--------------------------------------------------
 " Change encoding
+"--------------------------------------------------
 map _u :set encoding=utf-8<cr>:set fileencodings^=utf-8<cr>:set termencoding=utf-8<cr>
-map _i :set encoding=iso-8859-2<cr>:set fileencodings^=iso-8859-2<cr>:set termencoding=iso-8859-2<cr>
+map _i :set encoding=windows-1251<cr>:set fileencodings^=windows-1251<cr>:set termencoding=windows-1251<cr>
 
 "--------------------------------------------------
 " Non indend paste: <F12><S-Ins><F12>
+"--------------------------------------------------
 set pastetoggle=<F12>
 
 "--------------------------------------------------
 " Open in last edit place
+"--------------------------------------------------
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
 
 "--------------------------------------------------
 " Syntax coloring (~/.vim/colors/)
-" available colors: `ls /usr/share/vim/vim??/colors`
-"colorscheme beauty256
+"--------------------------------------------------
 colorscheme ir_black2
 
 "---------------------------------------------------
@@ -185,8 +164,9 @@ map <silent> <F8> :Tlist<CR>
 
 "---------------------------------------------------
 " Tab size
+"--------------------------------------------------
 :set tabstop=4        " Force tabs to be displayed/expanded to 2 spaces (instead of default 8).
-:set softtabstop=4    " Make Vim treat <Tab> key as 2 spaces, but respect hard Tabs.
+:set softtabstop=4    " Make Vim treat <Tab> key as 4 spaces, but respect hard Tabs.
                       " I don't think this one will do what you want.
 :set expandtab        " Turn Tab keypresses into spaces.  Sounds like this is happening to you.
                       " You can still insert real Tabs as [Ctrl]-V [Tab].
@@ -252,40 +232,11 @@ au BufNewFile *.tpl set ft=php.html
 vmap <C-y> :<Esc>`>a<CR><Esc>mx`<i<CR><Esc>my'xk$v'y!xclip -selection c<CR>u
 map <C-p> :set paste<CR>i<CR><CR><Esc>k:.!xclip -o<CR>JxkJx:set nopaste<CR>
 
-"  ------------------------------------------------------
-"  Swank/Slime ond other Lisp features
-"  ------------------------------------------------------
-"let g:slimv_swank_cmd = '! xterm -e clisp --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
-"    '! xterm -e sbcl --load /usr/share/common-lisp/source/slime/start-swank.lisp &'
-
-"  ------------------------------------------------------
-"  Used to edit syntax highlighting
-"  ------------------------------------------------------
-" adds to statusline
-" set statusline+=%{synIDattr(synID(line('.'),col('.'),1),'name')}
-
-" " a little more informative version of the above
-" nmap Q :call <SID>SynStack()<CR>
-
-" function! <SID>SynStack()
-"     if !exists("*synstack")
-"         return
-"     endif
-"     echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-" endfunc
-
 
 "  ------------------------------------------------------
 "  Disable fucking paredit mode (Slimv)
 "  ------------------------------------------------------
 let g:paredit_mode=0
-
-
-"  ------------------------------------------------------
-"  Shift+Tab to autocomplete methods and properties
-"  ------------------------------------------------------
-inoremap <Esc>[Z <C-x><C-o>
-
 
 "  ------------------------------------------------------
 "  Turn Omicomplete on
@@ -297,28 +248,11 @@ set ofu=syntaxcomplete#Complete
 "  ------------------------------------------------------
 let g:neocomplcache_enable_at_startup = 1
 
-
 "  ------------------------------------------------------
 "  make nerdtree ignore .pyc
 "  ------------------------------------------------------
 let NERDTreeIgnore = ['\.pyc$', '\.pyo$']
 
-"  ------------------------------------------------------
-" tweak for jump to definition
-" 
-"  http://tartley.com/?p=1277
-" By default, ctags generates tags for Python functions, classes, class members, variables and imports.
-" To fix this, create a ~/.ctags file:
-"    --python-kinds=-iv
-"    --exclude=build
-"    --exclude=dist
-" in case of indexer, the record for a python project should look like this:
-"
-"        [soda]
-"
-"        option:ctags_params = " --languages=python --python-kinds=-iv --exclude=build --exclude=dist " 
-"        /home/thefish/projects/soda/
-"
 "  ------------------------------------------------------
 " go to defn of tag under the cursor
 fun! MatchCaseTag()
